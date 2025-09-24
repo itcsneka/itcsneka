@@ -1,6 +1,6 @@
 # 👋 Selamat Datang di IT Club SMK Negeri 4 Klaten
 
-![Banner IT Club](https://i.ibb.co/ZVhWg7S/banner-itclub.png)
+![Banner IT Club](https://ibb.co.com/whzgk7rP)
 
 ## 💻 Tentang Kami
 **IT Club SMK Negeri 4 Klaten** adalah wadah bagi siswa yang memiliki minat dan bakat di bidang **teknologi informasi**.  
