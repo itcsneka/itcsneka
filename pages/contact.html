@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>IT CLUB SNEKA — Kontak & Daftar</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fff;--text:#0f172a;--muted:#64748b;--accent:#0ea5a4;--card:#f8fafc}
+    *{box-sizing:border-box}body{margin:0;font-family:"Inter",sans-serif;background:var(--bg);color:var(--text)}
+    header{position:sticky;top:0;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));border-bottom:1px solid rgba(15,23,42,0.04)}
+    .nav-ct{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+    .container{max-width:1200px;margin:0 auto;padding:36px 20px}
+    .form-card{background:var(--card);padding:20px;border-radius:12px;max-width:720px}
+    label{display:block;font-weight:600;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:12px}
+    .muted{color:var(--muted)}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:none;cursor:pointer}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:700px){.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-ct">
+      <div style="display:flex;gap:12px;align-items:center">
+        <div style="width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#0ea5a4,#60a5fa);display:flex;align-items:center;justify-content:center;color:white">S</div>
+        <div>
+          <strong>IT CLUB SNEKA</strong><div class="muted" style="font-size:12px">Kontak & Pendaftaran</div>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="info.html">Tentang</a>
+        <a href="portfolio.html">Kegiatan</a>
+        <a href="login.html" class="muted">Masuk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Daftar Anggota / Hubungi Kami</h2>
+    <p class="muted">Isi formulir di bawah untuk bergabung atau bertanya tentang kegiatan kami.</p>
+
+    <div class="form-card" style="margin-top:18px">
+      <form id="contactForm">
+        <div class="row">
+          <div>
+            <label for="name">Nama Lengkap</label>
+            <input id="name" name="name" required placeholder="Nama Anda"/>
+          </div>
+          <div>
+            <label for="phone">No. Whatsapp</label>
+            <input id="phone" name="phone" required placeholder="62xxx"/>
+          </div>
+        </div>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" placeholder="alamat@domain.com"/>
+
+        <label for="role">Tertarik pada</label>
+        <select id="role" name="role">
+          <option>Web Development</option>
+          <option>Jaringan & IoT</option>
+          <option>Desain & UI/UX</option>
+          <option>Mobile App</option>
+        </select>
+
+        <label for="message">Pesan / Catatan</label>
+        <textarea id="message" rows="4" placeholder="Bisa tulis pengalaman atau alasan bergabung"></textarea>
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <button class="btn" type="submit">Kirim Pendaftaran</button>
+          <div id="status" class="muted" style="font-size:14px"></div>
+        </div>
+      </form>
+    </div>
+
+    <section style="margin-top:22px">
+      <h3>Lokasi</h3>
+      <p class="muted">SMK Negeri 4 Klaten — Gedung Teknologi</p>
+    </section>
+  </main>
+
+  <footer style="border-top:1px solid rgba(15,23,42,0.04);padding:18px 20px;text-align:center">
+    <div class="muted">© <span id="yy"></span> IT CLUB SNEKA</div>
+  </footer>
+
+  <script>
+    document.getElementById('yy').textContent = new Date().getFullYear();
+
+    // Contact form submission with endpoint support + fallback to localStorage
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Mengirim...';
+      const payload = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        role: form.role.value,
+        message: form.message.value.trim(),
+        timestamp: new Date().toISOString()
+      };
+
+      // Try POST to /api/contact (Vercel)
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          status.textContent = 'Terima kasih! Pendaftaran terkirim.';
+          form.reset();
+        } else {
+          throw new Error('server error');
+        }
+      } catch (err) {
+        // fallback: save to localStorage (for GitHub Pages)
+        try {
+          const saved = JSON.parse(localStorage.getItem('itc-contacts') || '[]');
+          saved.push(payload);
+          localStorage.setItem('itc-contacts', JSON.stringify(saved));
+          status.textContent = 'Tersimpan secara lokal (github pages) — Admin: cek localStorage.';
+          form.reset();
+        } catch(e){
+          status.textContent = 'Gagal mengirim. Coba lagi nanti.';
+        }
+      }
+
+      setTimeout(()=>{ status.textContent = ''; }, 5000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IT CLUB SNEKA — Beranda</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="IT CLUB SNEKA - IT Club SMK N 4 Klaten" />
+  <style>
+    :root{
+      --bg:#ffffff; --text:#0f172a; --muted:#64748b; --accent:#0ea5a4; --glass: rgba(15,23,42,0.06);
+      --card:#f8fafc; --radius:14px; --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;backdrop-filter: blur(6px);z-index:60;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      border-bottom:1px solid rgba(15,23,42,0.04);
+    }
+    .nav-ct{max-width:var(--container);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 18px rgba(14,165,164,0.12);
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav{display:flex;align-items:center;gap:18px}
+    .nav-links{display:flex;gap:12px}
+    .btn{padding:8px 14px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:10px}
+    /* hamburger */
+    .burger{display:none;border:none;background:transparent;cursor:pointer}
+    .burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+    /* Container & sections */
+    .container{max-width:var(--container);margin:0 auto;padding:40px 20px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero .kicker{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);margin-bottom:14px}
+    .hero h2{font-size:38px;margin:0 0 12px 0;line-height:1.05}
+    .hero p{color:var(--muted);margin:0 0 18px 0}
+    .hero .actions{display:flex;gap:12px}
+    .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 8px 24px rgba(15,23,42,0.04)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+    .feature{padding:16px;border-radius:12px;background:linear-gradient(180deg,white,var(--card));border:1px solid rgba(15,23,42,0.03)}
+    .feature h4{margin:0 0 8px 0}
+    /* portfolio grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .project{height:160px;border-radius:10px;background:linear-gradient(180deg,#fff,#f1fbfa);display:flex;align-items:end;padding:12px;font-weight:700;color:var(--text)}
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .nav-links{display:none}
+      .burger{display:block}
+      .grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .hero h2{font-size:28px}
+      .brand h1{font-size:14px}
+    }
+    footer{border-top:1px solid rgba(15,23,42,0.04);padding:28px 20px;margin-top:46px;background:transparent}
+    .muted{color:var(--muted)}
+    /* animations */
+    .reveal{opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-ct">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div>
+          <h1>IT CLUB SNEKA</h1>
+          <div class="muted" style="font-size:12px">SMK N 4 Klaten</div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-links">
+          <a href="index.html">Beranda</a>
+          <a href="pages/info.html">Tentang</a>
+          <a href="pages/portfolio.html">Kegiatan</a>
+          <a href="pages/contact.html">Kontak</a>
+        </div>
+        <a class="ghost" href="anggota/login.html">Masuk</a>
+        <button class="btn" id="joinBtn">Gabung</button>
+        <button class="burger" id="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="kicker reveal">Komunitas Teknologi Sekolah</div>
+        <h2 class="reveal">Berkolaborasi • Belajar • Berkarya — <span style="color:var(--accent)">IT CLUB SNEKA</span></h2>
+        <p class="reveal">Tempat berkumpulnya siswa yang ingin mengasah kemampuan programming, jaringan, desain, dan project teknologi lainnya. Ikuti workshop, lomba, dan proyek nyata.</p>
+        <div class="actions reveal">
+          <button class="btn" id="ctaJoin">Gabung Sekarang</button>
+          <a class="ghost" href="pages/info.html">Pelajari Lebih Lanjut</a>
+        </div>
+
+        <div class="features reveal" style="margin-top:28px">
+          <div class="feature">
+            <h4>Workshop & Kursus</h4>
+            <p class="muted" style="margin:6px 0 0">Dasar programming, web, dan jaringan.</p>
+          </div>
+          <div class="feature">
+            <h4>Proyek Nyata</h4>
+            <p class="muted" style="margin:6px 0 0">Buat portofolio dari project sekolah & komunitas.</p>
+          </div>
+          <div class="feature">
+            <h4>Kompetisi</h4>
+            <p class="muted" style="margin:6px 0 0">Ikut lomba tingkat kabupaten & provinsi.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="card reveal">
+        <h3 style="margin:0 0 8px">Agenda Terdekat</h3>
+        <p class="muted" style="margin:0 0 12px">Workshop Web Development — 20 Oktober 2025</p>
+        <div class="grid">
+          <div class="project">Website Sekolah</div>
+          <div class="project">IoT Garden</div>
+          <div class="project">Mobile App</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="container" style="padding-top:6px">
+      <h3 class="reveal">Proyek Terbaru</h3>
+      <p class="muted reveal">Ringkasan project siswa & dokumentasi kegiatan</p>
+
+      <div class="grid" style="margin-top:12px">
+        <div class="project reveal">Aplikasi Presensi</div>
+        <div class="project reveal">Landing Page Company</div>
+        <div class="project reveal">Bot WhatsApp</div>
+      </div>
+    </section>
+
+    <section class="container" style="padding-bottom:40px">
+      <h3 class="reveal">Ingin Bergabung?</h3>
+      <p class="muted reveal">Daftar mudah, langsung ikut kegiatan.</p>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="pages/contact.html">Daftar Anggota</a>
+        <a class="ghost" href="pages/info.html">Lihat Struktur</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="logo" style="width:36px;height:36px">S</div>
+          <div>
+            <strong>IT CLUB SNEKA</strong>
+            <div class="muted" style="font-size:13px">SMK N 4 Klaten</div>
+          </div>
+        </div>
+      </div>
+      <div class="muted" style="font-size:13px">© <span id="year"></span> IT CLUB SNEKA — All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // small utilities & interactions (all inline)
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile menu
+    const burger = document.getElementById('burger');
+    burger.addEventListener('click', ()=> {
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks.style.display === 'flex') navLinks.style.display = 'none';
+      else navLinks.style.display = 'flex';
+    });
+
+    // CTA buttons -> go to contact.html
+    document.getElementById('ctaJoin').addEventListener('click', ()=> location.href = 'pages/contact.html');
+    document.getElementById('joinBtn').addEventListener('click', ()=> location.href = 'pages/contact.html');
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
+</body>
+</html>
