@@ -24,16 +24,27 @@
       background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
       border-bottom:1px solid rgba(15,23,42,0.04);
     }
-    .nav-ct{max-width:var(--container);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .nav-ct{max-width:var(--container);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
-      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 18px rgba(14,165,164,0.12);
+      width:44px; height:44px;
+      border-radius:10px;
+      overflow: hidden;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 18px rgba(14,165,164,0.12);
+      background:transparent;
+    }
+    .logo img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
     .brand h1{font-size:16px;margin:0}
-    nav{display:flex;align-items:center;gap:18px}
+    nav{display:flex;align-items:center;gap:18px;position:relative}
     .nav-links{display:flex;gap:12px}
     .btn{padding:8px 14px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
+    .btn2{padding:9px 10px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
     .ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:10px}
     /* hamburger */
     .burger{display:none;border:none;background:transparent;cursor:pointer}
@@ -59,8 +70,28 @@
       .features{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width:640px){
-      .nav-links{display:none}
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:60px;
+        right:0;
+        background:white;
+        flex-direction:column;
+        padding:12px;
+        box-shadow:0 4px 14px rgba(0,0,0,0.08);
+        border-radius:10px;
+        width:180px;
+      }
+      .nav-links a{
+        padding:8px 10px;
+        border-radius:8px;
+      }
+      .nav-links a:hover{
+        background:var(--glass);
+      }
       .burger{display:block}
+      .btn{padding:8px 10px}
+      .ghost{padding:8px 10px}
       .grid{grid-template-columns:1fr}
       .features{grid-template-columns:1fr}
       .hero h2{font-size:28px}
@@ -68,16 +99,15 @@
     }
     footer{border-top:1px solid rgba(15,23,42,0.04);padding:28px 20px;margin-top:46px;background:transparent}
     .muted{color:var(--muted)}
-    /* animations */
-    .reveal{opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal.visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
   <header>
     <div class="nav-ct">
       <div class="brand">
-        <div class="logo">S</div>
+        <div class="logo">
+          <img src="https://files.catbox.moe/brcvv3.png" alt="Logo IT CLUB SNEKA">
+        </div>
         <div>
           <h1>IT CLUB SNEKA</h1>
           <div class="muted" style="font-size:12px">SMK N 4 Klaten</div>
@@ -87,8 +117,9 @@
       <nav>
         <div class="nav-links">
           <a href="index.html">Beranda</a>
+          <a href="pages/portofolio.html">Portofolio</a>
           <a href="pages/info.html">Tentang</a>
-          <a href="pages/portfolio.html">Kegiatan</a>
+          <a href="pages/kegiatan.html">Kegiatan</a>
           <a href="pages/contact.html">Kontak</a>
         </div>
         <a class="ghost" href="anggota/login.html">Masuk</a>
@@ -113,48 +144,79 @@
 
         <div class="features reveal" style="margin-top:28px">
           <div class="feature">
-            <h4>Workshop & Kursus</h4>
-            <p class="muted" style="margin:6px 0 0">Dasar programming, web, dan jaringan.</p>
+            <h4>Dasar Website</h4>
+            <p class="muted" style="margin:6px 0 0">Mempelajari dasar-dasar Pemograman Website.</p>
           </div>
           <div class="feature">
-            <h4>Proyek Nyata</h4>
-            <p class="muted" style="margin:6px 0 0">Buat portofolio dari project sekolah & komunitas.</p>
+            <h4>Cyber Security</h4>
+            <p class="muted" style="margin:6px 0 0">Memiliki Ilmu dasar mengenai keamanan data pribadi.</p>
           </div>
           <div class="feature">
-            <h4>Kompetisi</h4>
-            <p class="muted" style="margin:6px 0 0">Ikut lomba tingkat kabupaten & provinsi.</p>
+            <h4>Ethical Hacking</h4>
+            <p class="muted" style="margin:6px 0 0">Memiliki ilmu dasar dalam dunia hacking.</p>
           </div>
         </div>
-
       </div>
+  <div class="grid">  
+    <a href="https://example.com" target="_blank" class="project" style="background:#fff; padding:0; overflow:hidden; position:relative;">
+      <img src="https://files.catbox.moe/2fzr5u.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:6px 10px; background:rgba(0,0,0,0.4); color:#fff; font-weight:150;">
+        Kewirausahaan
+      </div>
+    </a>
 
-      <aside class="card reveal">
-        <h3 style="margin:0 0 8px">Agenda Terdekat</h3>
-        <p class="muted" style="margin:0 0 12px">Workshop Web Development — 20 Oktober 2025</p>
-        <div class="grid">
-          <div class="project">Website Sekolah</div>
-          <div class="project">IoT Garden</div>
-          <div class="project">Mobile App</div>
-        </div>
-      </aside>
+    <a href="https://example.com" target="_blank" class="project" style="background:#fff; padding:0; overflow:hidden; position:relative;">
+      <img src="https://files.catbox.moe/2fzr5u.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:6px 10px; background:rgba(0,0,0,0.4); color:#fff; font-weight:600;">
+        IoT Garden • Sinta
+      </div>
+    </a>
+
+    <a href="https://example.com" target="_blank" class="project" style="background:#fff; padding:0; overflow:hidden; position:relative;">
+      <img src="https://files.catbox.moe/2fzr5u.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:6px 10px; background:rgba(0,0,0,0.4); color:#fff; font-weight:600;">
+        Mobile App • Raka
+      </div>
+    </a>
+  </div>
+
     </section>
 
-    <section class="container" style="padding-top:6px">
-      <h3 class="reveal">Proyek Terbaru</h3>
-      <p class="muted reveal">Ringkasan project siswa & dokumentasi kegiatan</p>
-
-      <div class="grid" style="margin-top:12px">
-        <div class="project reveal">Aplikasi Presensi</div>
-        <div class="project reveal">Landing Page Company</div>
-        <div class="project reveal">Bot WhatsApp</div>
+<aside class="card reveal">
+  <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+    <h3 style="margin:0 0 8px">Profil Anggota</h3>
+    <a class="btn2" href="pages/portofolio.html">lainnya</a>
+  </div>
+  <p class="muted" style="margin:0 0 12px">Portofolio Anggota</p>
+  <div class="grid">  
+    <a href="https://example.com" target="_blank" class="project" style="background:#fff; padding:0; overflow:hidden; position:relative;">
+      <img src="https://files.catbox.moe/2fzr5u.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:6px 10px; background:rgba(0,0,0,0.4); color:#fff; font-weight:600;">
+        Website Sekolah • Fajar
       </div>
-    </section>
+    </a>
+
+    <a href="https://example.com" target="_blank" class="project" style="background:#fff; padding:0; overflow:hidden; position:relative;">
+      <img src="https://files.catbox.moe/2fzr5u.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:6px 10px; background:rgba(0,0,0,0.4); color:#fff; font-weight:600;">
+        IoT Garden • Sinta
+      </div>
+    </a>
+
+    <a href="https://example.com" target="_blank" class="project" style="background:#fff; padding:0; overflow:hidden; position:relative;">
+      <img src="https://files.catbox.moe/2fzr5u.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:6px 10px; background:rgba(0,0,0,0.4); color:#fff; font-weight:600;">
+        Mobile App • Raka
+      </div>
+    </a>
+  </div>
+</aside>
 
     <section class="container" style="padding-bottom:40px">
       <h3 class="reveal">Ingin Bergabung?</h3>
       <p class="muted reveal">Daftar mudah, langsung ikut kegiatan.</p>
       <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn" href="pages/contact.html">Daftar Anggota</a>
+        <a class="btn" href="pages/contact.html">Gabung</a>
         <a class="ghost" href="pages/info.html">Lihat Struktur</a>
       </div>
     </section>
@@ -164,14 +226,16 @@
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
       <div>
         <div style="display:flex;align-items:center;gap:12px">
-          <div class="logo" style="width:36px;height:36px">S</div>
+          <div class="logo" style="width:36px;height:36px">
+            <img src="https://files.catbox.moe/brcvv3.png" alt="Logo IT CLUB SNEKA">
+          </div>
           <div>
             <strong>IT CLUB SNEKA</strong>
             <div class="muted" style="font-size:13px">SMK N 4 Klaten</div>
           </div>
         </div>
       </div>
-      <div class="muted" style="font-size:13px">© <span id="year"></span> IT CLUB SNEKA — All rights reserved</div>
+      <div class="muted" style="font-size:13px">© <span id="year"></span> IT CLUB SNEKA — Diganti Atau Menggantikan</div>
     </div>
   </footer>
 
@@ -181,10 +245,10 @@
 
     // mobile menu
     const burger = document.getElementById('burger');
+    const navLinks = document.querySelector('.nav-links');
+
     burger.addEventListener('click', ()=> {
-      const navLinks = document.querySelector('.nav-links');
-      if (navLinks.style.display === 'flex') navLinks.style.display = 'none';
-      else navLinks.style.display = 'flex';
+      navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
     });
 
     // CTA buttons -> go to contact.html
