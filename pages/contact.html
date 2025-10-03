@@ -102,19 +102,20 @@
           </div>
         </div>
 
-        <label for="email">Email</label>
-        <input id="email" name="email" placeholder="alamat@domain.com"/>
+<label for="email">Email</label>
+<input id="email" name="email" required placeholder="alamat@domain.com"/>
 
-        <label for="role">Tertarik pada</label>
-        <select id="role" name="role">
-          <option>Web Development</option>
-          <option>Jaringan & IoT</option>
-          <option>Desain & UI/UX</option>
-          <option>Mobile App</option>
-        </select>
+<label for="role">Tertarik pada</label>
+<select id="role" name="role" required>
+  <option value="" disabled selected>Pilih minat...</option>
+  <option>Web Development</option>
+  <option>Cyber Security</option>
+  <option>Ethical Hacking</option>
+</select>
 
-        <label for="message">Pesan / Catatan</label>
-        <textarea id="message" name="message" rows="4" placeholder="Bisa tulis pengalaman atau alasan bergabung"></textarea>
+<label for="message">Pesan / Catatan</label>
+<textarea id="message" name="message" rows="4" required placeholder="Bisa tulis pengalaman atau alasan bergabung"></textarea>
+
 
         <div style="display:flex;gap:12px;align-items:center">
           <button class="btn" type="submit">Kirim Pendaftaran</button>
@@ -173,3 +174,4 @@
   </script>
 </body>
 </html>
+
