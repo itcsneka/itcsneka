@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IT CLUB SNEKA — Kontak & Pendaftaran</title>
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/brcvv3.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --text:#0f172a; --muted:#64748b; --accent:#0ea5a4; --glass: rgba(15,23,42,0.06);
+      --card:#f8fafc; --radius:14px; --container:1200px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg); color:var(--text); line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;backdrop-filter: blur(6px);z-index:60;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      border-bottom:1px solid rgba(15,23,42,0.04);
+    }
+    .nav-ct{max-width:var(--container);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand h1{font-size:16px;margin:0}
+    .logo img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    nav{display:flex;align-items:center;gap:18px;position:relative}
+    .nav-links{display:flex;gap:12px}
+    .btn{padding:8px 14px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:10px}
+    .burger{display:none;border:none;background:transparent;cursor:pointer}
+    .burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+
+    @media (max-width:640px){
+      .nav-links{
+        display:none; position:absolute; top:60px; right:0; background:white; flex-direction:column;
+        padding:12px; box-shadow:0 4px 14px rgba(0,0,0,0.08); border-radius:10px; width:180px;
+      }
+      .nav-links a{padding:8px 10px;border-radius:8px}
+      .nav-links a:hover{background:var(--glass)}
+      .burger{display:block}
+    }
+
+    .container{max-width:var(--container);margin:0 auto;padding:40px 20px}
+
+    .form-card{background:var(--card);padding:20px;border-radius:12px;max-width:720px;margin:0 auto}
+    label{display:block;font-weight:600;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:12px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:700px){.row{grid-template-columns:1fr}}
+
+    footer{border-top:1px solid rgba(15,23,42,0.04);padding:28px 20px;text-align:center}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (Copy dari Beranda) -->
+<header>
+  <div class="nav-ct">
+    <div class="brand">
+      <div class="logo" style="width:44px; height:44px; border-radius:10px; overflow: hidden; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(14,165,164,0.12); background:transparent;">
+        <img src="https://files.catbox.moe/brcvv3.png" alt="Logo IT CLUB SNEKA">
+      </div>
+      <div>
+        <h1>IT CLUB SNEKA</h1>
+        <div class="muted" style="font-size:12px">SMK N 4 Klaten</div>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="/index.html">Beranda</a>
+        <a href="portofolio.html">Portofolio</a>
+        <a href="info.html">Tentang</a>
+        <a href="kegiatan.html">Kegiatan</a>
+        <a href="contact.html">Kontak</a>
+      </div>
+      <a class="ghost" href="/anggota/login.html">Masuk</a>
+      <button class="btn" id="joinBtn">Gabung</button>
+      <button class="burger" id="burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <h2>Daftar Anggota / Hubungi Kami</h2>
+    <p class="muted">Isi formulir di bawah untuk bergabung atau bertanya tentang kegiatan kami.</p>
+
+    <div class="form-card" style="margin-top:18px">
+      <form id="contactForm">
+        <div class="row">
+          <div>
+            <label for="name">Nama Lengkap</label>
+            <input id="name" name="name" required placeholder="Nama Anda"/>
+          </div>
+          <div>
+            <label for="phone">No. Whatsapp</label>
+            <input id="phone" name="phone" required placeholder="62xxx"/>
+          </div>
+        </div>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" required placeholder="alamat@domain.com"/>
+
+        <label for="role">Tertarik pada</label>
+        <select id="role" name="role" required>
+          <option value="" disabled selected>Pilih minat...</option>
+          <option>Web Development</option>
+          <option>Cyber Security</option>
+          <option>Ethical Hacking</option>
+        </select>
+
+        <label for="message">Pesan / Catatan</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Bisa tulis pengalaman atau alasan bergabung"></textarea>
+
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <button class="btn" type="submit">Kirim Pendaftaran</button>
+          <div id="status" class="muted" style="font-size:14px"></div>
+        </div>
+      </form>
+    </div>
+
+    <section style="margin-top:22px">
+      <h3>Lokasi</h3>
+      <p class="muted">SMK Negeri 4 Klaten — Gedung Teknologi</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="muted">© <span id="yy"></span> IT CLUB SNEKA</div>
+  </footer>
+
+  <script>
+    document.getElementById('yy').textContent = new Date().getFullYear();
+
+    const burger = document.getElementById('burger');
+    const navLinks = document.querySelector('.nav-links');
+    burger.addEventListener('click', ()=> {
+      navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+    });
+
+    document.getElementById('joinBtn').addEventListener('click', ()=> {
+      location.href = 'contact.html';
+    });
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwXTB17AmoddxDhDlvgIGmIdk8VPOpPxKLCNuNIDkycaJi6vS8Tds39d8rhvkFK8QNZ/exec";
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      status.textContent = 'Mengirim...';
+      fetch(scriptURL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.value.trim(),
+          phone: form.phone.value.trim(),
+          email: form.email.value.trim(),
+          role: form.role.value,
+          message: form.message.value.trim()
+        })
+      })
+      .then(_ => { status.textContent = 'Terkirim! Terima kasih.'; form.reset(); })
+      .catch(_ => { status.textContent = 'Gagal mengirim. Coba lagi.'; });
+      setTimeout(() => { status.textContent = ""; }, 5000);
+    });
+  </script>
+</body>
+</html>

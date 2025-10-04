@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Admin • IT CLUB SNEKA</title>
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/brcvv3.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --text:#0f172a; --muted:#64748b; --accent:#0ea5a4; --glass: rgba(15,23,42,0.06);
+      --card:#f8fafc; --radius:14px; --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;backdrop-filter: blur(6px);z-index:60;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      border-bottom:1px solid rgba(15,23,42,0.04);
+    }
+    .nav-ct{max-width:var(--container);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:44px; height:44px;
+      border-radius:10px;
+      overflow: hidden;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 18px rgba(14,165,164,0.12);
+      background:transparent;
+    }
+    .logo img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav{display:flex;align-items:center;gap:18px;position:relative}
+    .nav-links{display:flex;gap:12px;transition:all 0.3s ease}
+    .btn{padding:8px 14px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
+    .btn2{padding:9px 10px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:10px}
+    /* hamburger */
+    .burger{display:none;border:none;background:transparent;cursor:pointer}
+    .burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+    /* Container & sections */
+    .container{max-width:var(--container);margin:0 auto;padding:40px 20px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero .kicker{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);margin-bottom:14px}
+    .hero h2{font-size:38px;margin:0 0 12px 0;line-height:1.05}
+    .hero p{color:var(--muted);margin:0 0 18px 0}
+    .hero .actions{display:flex;gap:12px}
+    .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 8px 24px rgba(15,23,42,0.04)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+    .feature{padding:16px;border-radius:12px;background:linear-gradient(180deg,white,var(--card));border:1px solid rgba(15,23,42,0.03)}
+    .feature h4{margin:0 0 8px 0}
+    /* portfolio grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .project{height:160px;border-radius:10px;background:linear-gradient(180deg,#fff,#f1fbfa);display:flex;align-items:end;padding:12px;font-weight:700;color:var(--text)}
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:60px;
+        right:0;
+        background:white;
+        flex-direction:column;
+        padding:12px;
+        box-shadow:0 4px 14px rgba(0,0,0,0.08);
+        border-radius:10px;
+        width:180px;
+        z-index:70;
+      }
+      .nav-links.show{display:flex}
+      .nav-links a{
+        padding:8px 10px;
+        border-radius:8px;
+      }
+      .nav-links a:hover{
+        background:var(--glass);
+      }
+      .burger{display:block}
+      .btn{padding:8px 10px}
+      .ghost{padding:8px 10px}
+      .grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .hero h2{font-size:28px}
+      .brand h1{font-size:14px}
+    }
+    footer{border-top:1px solid rgba(15,23,42,0.04);padding:28px 20px;margin-top:46px;background:transparent}
+    .muted{color:var(--muted)}
+
+    .container{max-width:var(--container);margin:24px auto;padding:20px}
+    h1{margin:0 0 18px}
+
+    .top-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+    .tabs{display:flex;gap:8px}
+    .tab{padding:8px 12px;border-radius:10px;background:var(--card);cursor:pointer}
+    .tab.active{background:linear-gradient(180deg,white,var(--card));box-shadow:0 6px 18px rgba(14,165,164,0.06)}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media (max-width:980px){ .grid{grid-template-columns:1fr} }
+
+    .card-list{display:flex;flex-direction:column;gap:12px}
+    .card-item{
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(248,250,252,0.9));
+      border-radius:12px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.03);
+      border:1px solid rgba(15,23,42,0.03);
+    }
+    .card-left{display:flex;align-items:center;gap:12px}
+    .avatar{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+      box-shadow:0 6px 18px rgba(14,165,164,0.12);
+    }
+    .meta{display:flex;flex-direction:column}
+    .meta .title{font-weight:700}
+    .meta .sub{font-size:13px;color:var(--muted)}
+
+    .actions{display:flex;gap:8px}
+    .actions button{padding:6px 10px;border-radius:8px;border:none;cursor:pointer}
+    .btn-edit{background:#fff;border:1px solid rgba(15,23,42,0.06)}
+    .btn-delete{background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c}
+
+    .add-btn{padding:8px 12px;border-radius:10px;background:var(--accent);color:#fff;border:none;cursor:pointer}
+
+    .modal-backdrop{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;z-index:120}
+    .modal{width:100%;max-width:480px;background:white;border-radius:12px;padding:18px;box-shadow:0 12px 40px rgba(2,6,23,0.2)}
+    .modal h3{margin:0 0 12px}
+    form .row{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+    form label{font-size:13px;color:var(--muted)}
+    input[type="text"], input[type="password"]{padding:10px;border-radius:8px;border:1px solid #e6eef0;font-size:14px}
+
+    .modal-actions{display:flex;justify-content:flex-end;gap:8px}
+    .btn-cancel{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:8px;cursor:pointer}
+    .btn-save{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    .hint{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .loading{opacity:0.6}
+
+    /* Loading Spinner */
+    .spinner {
+      border: 4px solid rgba(0,0,0,0.1);
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+      margin: 40px auto;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-ct">
+      <div class="brand">
+        <div class="logo">
+          <img src="https://files.catbox.moe/brcvv3.png" alt="Logo IT CLUB SNEKA">
+        </div>
+        <div>
+          <h1>IT CLUB SNEKA</h1>
+          <div class="muted" style="font-size:12px">SMK N 4 Klaten</div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-links">
+          <a href="index.html">Beranda</a>
+          <a href="pages/portofolio.html">Portofolio</a>
+          <a href="pages/info.html">Tentang</a>
+          <a href="pages/kegiatan.html">Kegiatan</a>
+          <a href="pages/contact.html">Kontak</a>
+        </div>
+        <button class="btn" id="joinBtn">Log Out</button>
+        <button class="burger" id="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+<main class="container">
+  <div class="top-actions">
+    <h1>Admin Panel — Manajemen User & Admin</h1>
+    <div>
+      <div class="tabs" role="tablist" aria-label="tabs">
+        <div class="tab active" data-tab="users">Users</div>
+        <div class="tab" data-tab="admins">Admins</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <section>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div><div class="hint">Kelola data users (sheet terpisah)</div></div>
+        <div><button class="add-btn" id="addUserBtn">Tambah User</button></div>
+      </div>
+      <div id="usersList" class="card-list" aria-live="polite"></div>
+    </section>
+
+    <section>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div><div class="hint">Kelola data admins (sheet terpisah)</div></div>
+        <div><button class="add-btn" id="addAdminBtn">Tambah Admin</button></div>
+      </div>
+      <div id="adminsList" class="card-list" aria-live="polite"></div>
+    </section>
+  </div>
+</main>
+
+  <div id="modalRoot" style="display:none"></div>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', ()=>{
+      navLinks.classList.toggle('show');
+    });
+
+    // CTA button
+    document.getElementById('joinBtn').addEventListener('click', ()=> location.href = '/index.html');
+const USERS_API  = 'https://script.google.com/macros/s/AKfycby_f0hfZURRUGtbti1xobqpLSCMBVTX4JWsaV_x6Ts06zexi90xMMA86Yl4FbrpvtdT8A/exec';
+const ADMINS_API = 'https://script.google.com/macros/s/AKfycbwQrxgFezgkVdTPjGePvdhD7caJqVGZQBHYlsbTqtslIgJ2xMUApqyo1Z2hI6vZa0fh/exec';
+
+const usersListEl = document.getElementById('usersList');
+const adminsListEl = document.getElementById('adminsList');
+const modalRoot = document.getElementById('modalRoot');
+
+let usersData = [];
+let adminsData = [];
+
+function formEncode(obj){ return Object.keys(obj).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(obj[k])).join('&'); }
+async function fetchList(url){ const res=await fetch(url); return res.json(); }
+async function postAction(url, action, payload){
+  const fullUrl = url + '?action=' + encodeURIComponent(action);
+  const res = await fetch(fullUrl, {
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},
+    body: formEncode(payload)
+  });
+  const txt = await res.text();
+  try { return JSON.parse(txt); } catch(e){ return txt; }
+}
+
+function mask(s){return s? '*'.repeat(Math.min(8,s.length)):'—';}
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ==========================
+// Loading Spinner Helper
+// ==========================
+function showLoading(container) {
+  container.innerHTML = '<div class="spinner"></div>';
+}
+function hideLoading(container) {
+  container.innerHTML = '';
+}
+
+function renderUsers(){
+  usersListEl.innerHTML = '';
+  if(!usersData.length){ usersListEl.innerHTML='<div class="hint">Belum ada user.</div>'; return; }
+  usersData.forEach(u=>{
+    const item = document.createElement('div'); item.className='card-item';
+    item.innerHTML=`
+      <div class="card-left">
+        <div class="avatar">${(u.username||'').charAt(0).toUpperCase()}</div>
+        <div class="meta">
+          <div class="title">${escapeHtml(u.username||'—')}</div>
+          <div class="sub">Password: <strong>${mask(u.password||'')}</strong></div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-edit" data-username="${escapeHtml(u.username)}">Edit</button>
+        <button class="btn-delete" data-username="${escapeHtml(u.username)}">Delete</button>
+      </div>
+    `;
+    usersListEl.appendChild(item);
+  });
+  usersListEl.querySelectorAll('.btn-edit').forEach(btn=> btn.addEventListener('click', ()=> openEditModal('users', btn.dataset.username)));
+  usersListEl.querySelectorAll('.btn-delete').forEach(btn=> btn.addEventListener('click', ()=> handleDelete('users', btn.dataset.username)));
+}
+
+function renderAdmins(){
+  adminsListEl.innerHTML = '';
+  if(!adminsData.length){ adminsListEl.innerHTML='<div class="hint">Belum ada admin.</div>'; return; }
+  adminsData.forEach(a=>{
+    const item=document.createElement('div'); item.className='card-item';
+    item.innerHTML=`
+      <div class="card-left">
+        <div class="avatar">${(a.username||'').charAt(0).toUpperCase()}</div>
+        <div class="meta">
+          <div class="title">${escapeHtml(a.username||'—')}</div>
+          <div class="sub">Password: <strong>${mask(a.password||'')}</strong></div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-edit" data-username="${escapeHtml(a.username)}">Edit</button>
+        <button class="btn-delete" data-username="${escapeHtml(a.username)}">Delete</button>
+      </div>
+    `;
+    adminsListEl.appendChild(item);
+  });
+  adminsListEl.querySelectorAll('.btn-edit').forEach(btn=> btn.addEventListener('click', ()=> openEditModal('admins', btn.dataset.username)));
+  adminsListEl.querySelectorAll('.btn-delete').forEach(btn=> btn.addEventListener('click', ()=> handleDelete('admins', btn.dataset.username)));
+}
+
+async function loadAll(){
+  showLoading(usersListEl);
+  showLoading(adminsListEl);
+
+  try{
+    const [u,a] = await Promise.all([fetchList(USERS_API), fetchList(ADMINS_API)]);
+    usersData = Array.isArray(u)? u : (u.data||[]);
+    adminsData = Array.isArray(a)? a : (a.data||[]);
+    renderUsers();
+    renderAdmins();
+  }catch(e){
+    console.error(e);
+    usersListEl.innerHTML = '<div class="hint">Gagal memuat data users.</div>';
+    adminsListEl.innerHTML = '<div class="hint">Gagal memuat data admins.</div>';
+  }
+}
+
+// =======================================================
+// FIX 2: Perbaikan Penanganan Error di openAddModal
+// =======================================================
+function openAddModal(kind){ 
+  openModal({
+    title:(kind==='users')?'Tambah User':'Tambah Admin', 
+    data:{username:'',password:''}, 
+    onSave:async data=>{ 
+      const res = await postAction(kind==='users'?USERS_API:ADMINS_API,'add',data);
+      
+      // Cek status dari Apps Script (status: "error" atau status: "success")
+      if(res && res.status === 'error'){
+        alert('Gagal Menambah Data: '+res.message);
+        return; // Hentikan proses, jangan tutup modal
+      }
+      
+      await loadAll(); 
+      closeModal(); 
+    }
+  }); 
+}
+
+function openEditModal(kind, username){
+  const list = (kind==='users')? usersData : adminsData;
+  const rec = list.find(r=>String(r.username)===String(username));
+  if(!rec) return alert('Data tidak ditemukan');
+  openModal({
+    title:(kind==='users')?'Edit User':'Edit Admin',
+    data:{username:rec.username,password:rec.password||''},
+    usernameReadOnly:true,
+    onSave: async data=>{ 
+      const res = await postAction(kind==='users'?USERS_API:ADMINS_API,'update',data);
+      
+      // FIX 2: Tambahkan penanganan error di update juga
+      if(res && res.status === 'error'){
+        alert('Gagal Update Data: '+res.message);
+        return; 
+      }
+      
+      await loadAll(); 
+      closeModal(); 
+    }
+  });
+}
+
+async function handleDelete(kind, username){
+  if(!confirm('Hapus "'+username+'" ?')) return;
+  const res = await postAction(kind==='users'?USERS_API:ADMINS_API,'delete',{username});
+  
+  // FIX 2: Tambahkan penanganan error di delete juga
+  if(res && res.status === 'error'){
+    alert('Gagal Hapus Data: '+res.message);
+    return;
+  }
+  
+  await loadAll();
+}
+
+function openModal({title,data,usernameReadOnly=false,onSave}){
+  modalRoot.style.display='block';
+  modalRoot.innerHTML=`
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal" role="dialog" aria-modal="true">
+        <h3>${escapeHtml(title)}</h3>
+        <form id="modalForm">
+          
+          <div class="row">
+            <label>Username</label>
+            <input type="text" name="username" value="${escapeHtml(data.username||'')}" ${usernameReadOnly?'readonly':''} required/>
+          </div>
+          <div class="row">
+            <label>Password</label>
+            <input type="password" name="password" value="${escapeHtml(data.password||'')}" required/>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="modalCancel">Batal</button>
+            <button type="submit" class="btn-save">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+  document.getElementById('modalCancel').addEventListener('click',closeModal);
+  document.getElementById('modalBackdrop').addEventListener('click',e=>{
+    if(e.target.id==='modalBackdrop') closeModal();
+  });
+  document.getElementById('modalForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const f=e.target;
+    const payload={username:f.username.value,password:f.password.value};
+    await onSave(payload);
+  });
+}
+
+function closeModal(){ modalRoot.style.display='none'; modalRoot.innerHTML=''; }
+
+document.getElementById('addUserBtn').addEventListener('click',()=>openAddModal('users'));
+document.getElementById('addAdminBtn').addEventListener('click',()=>openAddModal('admins'));
+
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    if(tab.dataset.tab==='users'){ usersListEl.parentElement.style.display='block'; adminsListEl.parentElement.style.display='none'; }
+    else { usersListEl.parentElement.style.display='none'; adminsListEl.parentElement.style.display='block'; }
+  });
+});
+
+// Initial load
+loadAll();
+</script>
+</body>
+</html>
